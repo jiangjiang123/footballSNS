@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>足球圈子-关注</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+	</head>
+
+	<body>
+		<header>
+			<a href="index.html" class="title">热点</a>
+			<a href="index.html" class="title active">关注</a>
+		</header>
+		<section id="wrapper" class="attention main">
+			
+			<div id="scroller">
+				<ul>
+					<li>
+						<div class="tit">
+							<div class="photo">
+								<img src="images/logo1.png" />
+							</div>
+							<div class="name">
+								<p>我叫小萌<span>382344<i></i></span></p>
+								<p>我是小萌我怕谁！哈哈哈哈！</p>
+							</div>
+						</div>
+						<img src="images/imgs-1.jpg" />
+					</li>
+					<li>
+						<div class="tit">
+							<div class="photo">
+								<img src="images/logo1.png" />
+							</div>
+							<div class="name">
+								<p>我叫小萌<span>382344<i></i></span></p>
+								<p>我是小萌我怕谁！哈哈哈哈！</p>
+							</div>
+						</div>
+						<img src="images/imgs-1.jpg" />
+					</li>
+					<li>
+						<div class="tit">
+							<div class="photo">
+								<img src="images/logo1.png" />
+							</div>
+							<div class="name">
+								<p>我叫小萌<span>382344<i></i></span></p>
+								<p>我是小萌我怕谁！哈哈哈哈！</p>
+							</div>
+						</div>
+						<img src="images/imgs-1.jpg" />
+					</li>
+					<li>
+						<div class="tit">
+							<div class="photo">
+								<img src="images/logo1.png" />
+							</div>
+							<div class="name">
+								<p>我叫小萌<span>382344<i></i></span></p>
+								<p>我是小萌我怕谁！哈哈哈哈！</p>
+							</div>
+						</div>
+						<img src="images/imgs-1.jpg" />
+					</li>
+				</ul>
+			</div>
+		</section>
+		<footer>
+			<a href="">
+				<span class="home icons"></span>
+				<span class="active">首页</span>
+			</a>
+			<a href="">
+				<span class="search icons"></span>
+				<span>发现</span>
+			</a>
+			<a href="">
+				<span class="camera"></span>
+			</a>
+			<a href="">
+				<span class="user icons"></span>
+				<span>我的</span>
+			</a>
+			<a href="">
+				<span class="exit icons"></span>
+				<span>退出</span>
+			</a>
+		</footer>
+	</body>
+	<script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/iscroll.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			//下拉刷新、上拉加载
+			var wheight = $(window).height();
+			var hheight = $("header").height();
+			var theight = $(".tab").height();
+			var fheight = $("footer").height();
+			$("#wrapper").height(wheight - hheight - theight - fheight - 10);
+			var myscroll = new iScroll("wrapper", {
+				hScrollbar: false,
+				vScrollbar: true
+			})
+			myscroll.refresh();
+		}
+	</script>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>足球圈子-发现</title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/user.css" />
+	</head>
+
+	<body>
+		<header>发现</header>
+		<div class="search">
+			<input id="name" type="search" placeholder="请输入昵称" />
+			<input id="btn" type="button" value="搜索" />
+		</div>
+		<section id="wrapper" style="position:relative;">
+			<div class="scroller">
+
+			</div>
+		</section>
+		<footer>
+			<a href="index.html">
+				<span class="home icons"></span>
+				<span>首页</span>
+			</a>
+			<a href="search.html">
+				<span class="search icons active"></span>
+				<span class="active">发现</span>
+			</a>
+			<a href="">
+				<span class="camera"></span>
+			</a>
+			<a href="user.html">
+				<span class="user icons"></span>
+				<span>我的</span>
+			</a>
+			<a href="">
+				<span class="exit icons"></span>
+				<span>退出</span>
+			</a>
+		</footer>
+	</body>
+	<script src="js/iscroll.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			//iscroll
+			var wheight = $(window).height();
+			var hheight = $("header").height();
+			var sheight = $(".search").height();
+			var fheight = $("footer").height();
+			$("#wrapper").height(wheight - hheight - sheight - fheight - 10);
+			var myscroll = new iScroll("wrapper", {
+				hScrollbar: false,
+				vScrollbar: true
+			})
+			myscroll.refresh();
+			//搜索
+			$("#btn").tap(function() {
+				var oInput = $("#name").val();
+				$(".scroller").html("");
+				$.ajax({
+					type: "get",
+					url: "http://localhost:8080/Proxy/FootBall/user/json/queryall.do",
+					data: {
+						"keyword": oInput,
+					},
+					success: function(d) {
+						var data = JSON.parse(d);
+						console.info(data)
+						var userlist = data.data.userlist;
+						for (var i = 0; i < userlist.length; i++) {
+							var oDiv = $("<div>");
+							oDiv.addClass("tits tit");
+							var dImg = $("<div>");
+							dImg.addClass("logo");
+							var oImg = $("<img src='http://101.200.173.217:8080/FootBall" + userlist[i].avatarpath + "'/>");
+							oImg[0].onload = function() {
+								myscroll.refresh();
+							};
+							dImg.append(oImg);
+							oDiv.append(dImg);
+							var pDiv = $("<div class='p'><p>" + userlist[i].nickname + "</p><p>" + userlist[i].signnature + "</p></div>");
+							oDiv.append(pDiv);
+							var gDiv = $("<button class='gz'>关注</button>");
+							oDiv.append(gDiv);
+							$(".scroller").append(oDiv)
+						}
+					}
+				})
+			})
+			$(".scroller").tap(function(event) {
+				var $target = $(event.target);
+				if ($target.is(".gz")) {
+					console.info($target.parent().index())
+					$.ajax({
+						type: "get",
+						url: "http://localhost:8080/Proxy/FootBall/attention/json/follow.do",
+						data: {
+							"loginsuserid": localStorage.getItem("loginuser"),
+							"tagetuserid": 17
+						},
+						success: function(d) {
+							var data = JSON.parse(d);
+							console.info(data);
+						}
+					})
+				}
+			})
+		})
+	</script>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/user.css" />
+	</head>
+
+	<body>
+		<header>个人中心</header>
+		<div class="search">
+			<input id="name" type="text" placeholder="请输入昵称" />
+			<input id="btn" type="button" value="搜索" />
+		</div>
+		<section>
+			<div class="tit">
+			<div class="logo">
+				<img src="images/user.png" alt="" />
+			</div>
+				<div class="p">
+					<p>我叫小萌</p>
+					<p>我是小萌我怕谁！哈哈哈哈！</p>
+				</div>
+			</div>
+			<nav>
+				<div class="active">照片(1)</div>
+				<div>关注(3)</div>
+				<div>粉丝(8)</div>
+			</nav>
+			<div id="wrapper" style="position:relative;">
+				<div class="scroller">
+					<div class="pics">
+						<ul style="float:left;">
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+						</ul>
+						<ul style="float:right;">
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+						</ul>
+					</div>
+					<div class="pics" style="display:none;">
+						<ul style="float:left;">
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+						</ul>
+						<ul style="float:right;">
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+						</ul>
+					</div>
+					<div class="pics" style="display: none;">
+						<ul style="float:left;">
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+						</ul>
+						<ul style="float:right;">
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+							<li><img src="images/user-1.jpg" /></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer>
+			<a href="index.html">
+				<span class="home icons"></span>
+				<span>首页</span>
+			</a>
+			<a href="search.html">
+				<span class="search icons"></span>
+				<span>发现</span>
+			</a>
+			<a href="">
+				<span class="camera"></span>
+			</a>
+			<a href="user.html">
+				<span class="user icons active"></span>
+				<span class="active">我的</span>
+			</a>
+			<a href="">
+				<span class="exit icons"></span>
+				<span>退出</span>
+			</a>
+		</footer>
+	</body>
+	<script src="js/iscroll.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var wheight = $(window).height();
+			var hheight = $("header").height();
+			var sheight = $(".search").height();
+			var theight = $(".tit").height();
+			var nhtight = $("nav").height();
+			var fheight = $("footer").height();
+			$("#wrapper").height(wheight - hheight - sheight-theight-nhtight - fheight - 10);
+			var myscroll = new iScroll("wrapper", {
+				hScrollbar: false,
+				vScrollbar: true
+			})
+			myscroll.refresh();
+			console.info(localStorage.getItem("loginuser"));
+			$("nav > div").tap(function(e){
+				e.preventDefault();
+				var index = $(this).index();
+				$(this).addClass("active").siblings().removeClass("active");
+				$("#wrapper > .scroller > .pics").eq(index).css("display","block").siblings().css("display","none");
+				myscroll.refresh();
+				myscroll.scrollTo(0,0);
+			})
+		}
+	</script>
+</html>

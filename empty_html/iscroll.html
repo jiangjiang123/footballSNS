@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="iconfont/demo.css"/>
+		<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+		<script src="js/iscroll.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+	
+		ul li:last-child:before{
+			content:"\e667";
+		}
+	</style>
+	<body>
+		<div id="wrapper">
+			<ul>
+				<li class="iconfont">&#xe677;</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li class="icon iconfont"></li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var myscroll;
+		var wrapper = document.getElementById("wrapper");
+		function loaded(){
+			myscroll=new iScroll("wrapper",{
+				mouseWheel:true,
+				scrollBars:true
+			});
+		}
+		window.addEventListener("DOMContentLoaded",loaded,false);
+	</script>
+</html>

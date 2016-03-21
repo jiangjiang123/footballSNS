@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>足球圈子-登录</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css">
+		<style type="text/css">
+			span{
+				color:red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>足球圈子-登录</header>
+		<div class="form">
+			<input type="text" id="name" placeholder="手机号"></input>
+			<input type="password" id="pwd" placeholder="密码"></input>
+			<span></span>
+			<div class="links">
+				<a class="reg" href="register.html">注册</a>
+				<a class="pwd" href="forget.html">忘记密码?</a>
+			</div>
+			<button id="btn" type="button">提交</button>
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#btn").on("tap", function(e) {
+				e.preventDefault();
+				var name = $("#name").val();
+				var pwd = $("#pwd").val();
+				var userInfo = window.localStorage;
+				if (true) {
+					$.ajax({
+						url: "http://localhost:8080/Proxy/FootBall/user/json/login.do",
+						data: {
+							"loginname": name,
+							"password": pwd
+						},
+						success: function(str) {
+							var data = JSON.parse(str);
+							userInfo.setItem("loginuser", JSON.stringify(data.data.loginuser.id));
+							console.info(data)
+							if(data.ecode == 200){
+								
+							}else if(data.ecode == 500){
+								$("span").html("用户名或密码错误！");
+							}
+						}
+					})
+				}
+			})
+			$("input").focus(function(){
+				$("span").html("");
+			})
+		})
+	</script>
+
+</html>
